@@ -32,3 +32,15 @@ void APlayerPiece::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 }
 
+void APlayerPiece::SpawnPieceActor() {
+	FActorSpawnParameters spawnParam;
+	spawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
+	GetWorld()->SpawnActor<AActor>(actorBPToSpawn, spawnPos, spawnParam);
+}
+
+
+void APlayerPiece::Roll(const TArray<AActor*>& boardTiles) {
+	int32 rollNum = FMath::RandRange(1, 6);
+	UE_LOG(LogTemp, Warning, TEXT("Roll: %d"), rollNum);
+}
+

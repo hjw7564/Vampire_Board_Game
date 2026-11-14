@@ -15,6 +15,18 @@ public:
 	// Sets default values for this character's properties
 	APlayerPiece();
 
+	UFUNCTION(BlueprintCallable, Category = "Piece")
+		void SpawnPieceActor();
+
+	UFUNCTION(BlueprintCallable, Category = "Piece")
+		void Roll(const TArray<AActor*>& boardTiles);
+
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AActor> actorBPToSpawn;
+
+	UPROPERTY(EditAnywhere)
+		FTransform spawnPos;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
