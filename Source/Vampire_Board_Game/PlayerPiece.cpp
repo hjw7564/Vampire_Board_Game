@@ -2,6 +2,7 @@
 
 
 #include "PlayerPiece.h"
+#include "BoardTile.h"
 
 // Sets default values
 APlayerPiece::APlayerPiece()
@@ -39,8 +40,17 @@ void APlayerPiece::SpawnPieceActor() {
 }
 
 
-void APlayerPiece::Roll(const TArray<AActor*>& boardTiles) {
-	int32 rollNum = FMath::RandRange(1, 6);
-	UE_LOG(LogTemp, Warning, TEXT("Roll: %d"), rollNum);
+void APlayerPiece::Roll() {
+	rollNum = FMath::RandRange(1, 6);
+	AActor* currTile;
+	if (playerTileIndex + rollNum >= boardTiles.Num()) {
+		currTile = boardTiles[playerTileIndex + rollNum - boardTiles.Num()];
+		playerTileIndex += rollNum - boardTiles.Num();
+	}
+	else {
+		currTile = boardTiles[playerTileIndex + rollNum];
+		playerTileIndex += rollNum;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("We are on tile %d"), playerTileIndex);
 }
 

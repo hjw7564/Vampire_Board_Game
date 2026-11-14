@@ -19,13 +19,25 @@ public:
 		void SpawnPieceActor();
 
 	UFUNCTION(BlueprintCallable, Category = "Piece")
-		void Roll(const TArray<AActor*>& boardTiles);
+		void Roll();
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<AActor> actorBPToSpawn;
 
 	UPROPERTY(EditAnywhere)
 		FTransform spawnPos;
+	
+	UPROPERTY(EditAnywhere)
+		TArray<AActor*> boardTiles;
+
+	UPROPERTY(EditAnywhere)
+		int64 playerTileIndex;
+
+	UPROPERTY(EditAnywhere)
+		float playerSpeed;
+
+	UPROPERTY()
+		int32 rollNum;
 
 protected:
 	// Called when the game starts or when spawned
