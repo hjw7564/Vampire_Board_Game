@@ -1,0 +1,72 @@
+# ---------------------------------------------
+# Unreal Engine .gitignore
+# ---------------------------------------------
+
+# Generated engine folders (rebuilt automatically by Unreal)
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+Build/*
+
+# Keep build files that are intentionally part of the project
+!Build/*/
+Build/*/**
+!Build/*/PakBlacklist*.txt
+!Build/**/*.ico
+!Build/**/*.icns
+!Build/**/*.plist
+
+# Plugin generated folders
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+.vscode/
+*.sln
+*.suo
+*.user
+*.opensdf
+*.sdf
+*.VC.db
+*.VC.opendb
+*.xcodeproj
+*.xcworkspace
+*.code-workspace
+
+# Compiled / debug files
+*.pdb
+*.exe
+*.dll
+*.lib
+*.exp
+*.ilk
+*.obj
+*.o
+*.a
+*.dylib
+*.so
+*.app
+
+# Crash and log files
+*.log
+*.dmp
+
+# Misc generated
+*.tmp
+*.temp
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Large source files you may not want in git (uncomment if needed)
+# *.psd
+# *.blend
+# *.fbx
+# *.mp4
