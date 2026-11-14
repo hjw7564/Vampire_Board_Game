@@ -1,8 +1,18 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.8",
+	"EngineAssociation": "{432ED7AE-4173-CBDC-9D83-17A4D5C83541}",
 	"Category": "",
 	"Description": "",
+	"Modules": [
+		{
+			"Name": "Vampire_Board_Game",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "ModelingToolsEditorMode",
