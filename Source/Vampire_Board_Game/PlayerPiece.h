@@ -25,6 +25,9 @@ public:
 	UFUNCTION(BlueprintAuthorityOnly, Category = "Coins")
 		void AddCoin(int coinsToAdd);
 
+	UFUNCTION(BlueprintCallable, Category = "Ammo")
+	void AddAmmo();
+
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<AActor> actorBPToSpawn;
 
@@ -43,6 +46,12 @@ public:
 
 	UPROPERTY()
 		int32 coins;
+
+	UPROPERTY(EditAnywhere)
+		float health;
+
+	UPROPERTY()
+		int32 ammo;
 
 protected:
 	// Called when the game starts or when spawned

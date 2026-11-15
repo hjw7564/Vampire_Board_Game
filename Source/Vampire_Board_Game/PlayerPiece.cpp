@@ -82,3 +82,7 @@ void APlayerPiece::AddCoin(int coinsToAdd) {
 	}
 }
 
+void APlayerPiece::AddAmmo() {
+	ammo += 1;
+}
+
