@@ -47,14 +47,14 @@ public:
 	UPROPERTY()
 		int32 rollNum;
 
-	UPROPERTY()
-		int32 coins;
+	UPROPERTY(BlueprintReadOnly)
+		float coins;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(BlueprintReadOnly)
 		float health;
 
-	UPROPERTY()
-		int32 ammo;
+	UPROPERTY(BlueprintReadOnly)
+		float ammo;
 
 protected:
 	// Called when the game starts or when spawned
