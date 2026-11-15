@@ -15,6 +15,9 @@ public:
 	// Sets default values for this actor's properties
 	ABoardTile();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+		int32 tileCoin;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

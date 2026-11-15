@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "BoardTile.h"
 #include "PlayerPiece.generated.h"
 
 UCLASS()
@@ -21,6 +22,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Piece")
 		void Roll();
 
+	UFUNCTION(BlueprintAuthorityOnly, Category = "Coins")
+		void AddCoin(int coinsToAdd);
+
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<AActor> actorBPToSpawn;
 
@@ -36,6 +40,9 @@ public:
 
 	UPROPERTY()
 		int32 rollNum;
+
+	UPROPERTY()
+		int32 coins;
 
 protected:
 	// Called when the game starts or when spawned
@@ -57,6 +64,8 @@ protected:
 	int64 targetIndex = 0;
 	bool determinedTarget = false;
 	AActor* target;
-
+	FVector currPos;
+	FVector destination;
+	ABoardTile* targetTile;
 }
 ;

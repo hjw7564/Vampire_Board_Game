@@ -17,7 +17,7 @@ public:
 	// Sets default values for this actor's properties
 	AGameManager();
 
-	UPROPERTY(EditAnywhere, Category = "PlayerPiece")
+	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "PlayerPiece")
 		APlayerPiece* player;
 
 protected:

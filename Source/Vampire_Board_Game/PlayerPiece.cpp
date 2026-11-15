@@ -27,7 +27,9 @@ void APlayerPiece::Tick(float DeltaTime)
 	if (targetIndex!=playerTileIndex) {
 			if (determinedTarget == false) {
 				target = boardTiles[(playerTileIndex + 1) % boardTiles.Num()];
-				direction = target->GetActorLocation() - boardTiles[playerTileIndex]->GetActorLocation();
+				currPos = GetActorLocation();
+				destination = FVector(target->GetActorLocation().X, target->GetActorLocation().Y, currPos.Z);
+				direction = destination - currPos;
 				totalDistance = direction.Size();
 				direction = direction.GetSafeNormal();
 				currDistance = 0.0f;
@@ -38,12 +40,17 @@ void APlayerPiece::Tick(float DeltaTime)
 				FVector location = GetActorLocation();
 				location += direction * playerSpeed * DeltaTime;
 				SetActorLocation(location);
-				currDistance = (location - boardTiles[playerTileIndex]->GetActorLocation()).Size();
+				currDistance = (location - currPos).Size();
 			}
 			else if (target != nullptr && currDistance >= totalDistance) {
-				SetActorLocation(target->GetActorLocation());
+				SetActorLocation(destination);
 				determinedTarget = false;
 				playerTileIndex  = (playerTileIndex+1)%boardTiles.Num();
+				targetTile = Cast<ABoardTile>(boardTiles[playerTileIndex]);
+				if (targetTile != nullptr && targetIndex==playerTileIndex) {
+					AddCoin(targetTile->tileCoin);
+					UE_LOG(LogTemp, Warning, TEXT("Coins: %i"), coins);
+				}
 			}
 	}
 }
@@ -56,9 +63,9 @@ void APlayerPiece::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 }
 
 void APlayerPiece::SpawnPieceActor() {
-	FActorSpawnParameters spawnParam;
+	/*FActorSpawnParameters spawnParam;
 	spawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-	GetWorld()->SpawnActor<AActor>(actorBPToSpawn, spawnPos, spawnParam);
+	GetWorld()->SpawnActor<AActor>(actorBPToSpawn, spawnPos, spawnParam);*/
 }
 
 
@@ -66,5 +73,12 @@ void APlayerPiece::Roll() {
 	rollNum = FMath::RandRange(1, 6);
 	targetIndex = (playerTileIndex + rollNum) % boardTiles.Num();
 	UE_LOG(LogTemp, Warning, TEXT("We are on tile %d"), playerTileIndex);
+}
+
+void APlayerPiece::AddCoin(int coinsToAdd) {
+	coins += coinsToAdd;
+	if (coins < 0) {
+		coins = 0;
+	}
 }
 
