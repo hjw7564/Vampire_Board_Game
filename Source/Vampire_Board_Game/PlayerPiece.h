@@ -30,8 +30,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		TArray<AActor*> boardTiles;
 
-	UPROPERTY(EditAnywhere)
-		int64 playerTileIndex;
 
 	UPROPERTY(EditAnywhere)
 		float playerSpeed;
@@ -50,4 +48,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-};
+protected:
+	FVector direction;
+	float totalDistance;
+	float currDistance;
+	FVector startTile;
+	int64 playerTileIndex = 0;
+	int64 targetIndex = 0;
+	bool determinedTarget = false;
+	AActor* target;
+
+}
+;

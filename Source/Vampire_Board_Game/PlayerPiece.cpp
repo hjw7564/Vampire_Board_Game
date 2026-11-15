@@ -24,6 +24,28 @@ void APlayerPiece::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (targetIndex!=playerTileIndex) {
+			if (determinedTarget == false) {
+				target = boardTiles[(playerTileIndex + 1) % boardTiles.Num()];
+				direction = target->GetActorLocation() - boardTiles[playerTileIndex]->GetActorLocation();
+				totalDistance = direction.Size();
+				direction = direction.GetSafeNormal();
+				currDistance = 0.0f;
+				determinedTarget = true;
+			}
+
+			if (target != nullptr && currDistance < totalDistance) {
+				FVector location = GetActorLocation();
+				location += direction * playerSpeed * DeltaTime;
+				SetActorLocation(location);
+				currDistance = (location - boardTiles[playerTileIndex]->GetActorLocation()).Size();
+			}
+			else if (target != nullptr && currDistance >= totalDistance) {
+				SetActorLocation(target->GetActorLocation());
+				determinedTarget = false;
+				playerTileIndex  = (playerTileIndex+1)%boardTiles.Num();
+			}
+	}
 }
 
 // Called to bind functionality to input
@@ -42,15 +64,7 @@ void APlayerPiece::SpawnPieceActor() {
 
 void APlayerPiece::Roll() {
 	rollNum = FMath::RandRange(1, 6);
-	AActor* currTile;
-	if (playerTileIndex + rollNum >= boardTiles.Num()) {
-		currTile = boardTiles[playerTileIndex + rollNum - boardTiles.Num()];
-		playerTileIndex += rollNum - boardTiles.Num();
-	}
-	else {
-		currTile = boardTiles[playerTileIndex + rollNum];
-		playerTileIndex += rollNum;
-	}
+	targetIndex = (playerTileIndex + rollNum) % boardTiles.Num();
 	UE_LOG(LogTemp, Warning, TEXT("We are on tile %d"), playerTileIndex);
 }
 
