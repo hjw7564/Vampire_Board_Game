@@ -28,7 +28,8 @@ void APlayerPiece::Tick(float DeltaTime)
 			if (determinedTarget == false) {
 				target = boardTiles[(playerTileIndex + 1) % boardTiles.Num()];
 				currPos = GetActorLocation();
-				destination = FVector(target->GetActorLocation().X, target->GetActorLocation().Y, currPos.Z);
+				destination = FVector(target->GetActorLocation().X + playerOffset.X, 
+					target->GetActorLocation().Y + playerOffset.Y, currPos.Z);
 				direction = destination - currPos;
 				totalDistance = direction.Size();
 				direction = direction.GetSafeNormal();

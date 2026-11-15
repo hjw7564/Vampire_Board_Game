@@ -41,6 +41,9 @@ public:
 	UPROPERTY(EditAnywhere)
 		float playerSpeed;
 
+	UPROPERTY(EditAnywhere)
+		FVector playerOffset;
+
 	UPROPERTY()
 		int32 rollNum;
 

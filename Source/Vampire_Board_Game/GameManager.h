@@ -17,8 +17,17 @@ public:
 	// Sets default values for this actor's properties
 	AGameManager();
 
+	UFUNCTION(BlueprintCallable, Category = "Manager")
+		APlayerPiece* AdvanceTurn();
+
 	UPROPERTY(EditInstanceOnly, BlueprintReadWrite, Category = "PlayerPiece")
 		APlayerPiece* player;
+
+	UPROPERTY(EditInstanceOnly)
+		TArray<AActor*> board;
+
+	UPROPERTY(EditInstanceOnly)
+		TArray<APlayerPiece*> players;
 
 protected:
 	// Called when the game starts or when spawned
@@ -27,5 +36,12 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+
+
+protected:
+	int turnCount;
+	float enemyHealth;
+	int currentPlayerIndex;
 
 };

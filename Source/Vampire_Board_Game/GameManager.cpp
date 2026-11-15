@@ -16,6 +16,10 @@ AGameManager::AGameManager()
 void AGameManager::BeginPlay()
 {
 	Super::BeginPlay();
+	for (int32 i = 0; i < players.Num(); ++i) {
+		players[i]->boardTiles = board;
+	}
+	currentPlayerIndex = 0;
 	
 }
 
@@ -24,5 +28,10 @@ void AGameManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+APlayerPiece* AGameManager::AdvanceTurn() {
+	currentPlayerIndex = (currentPlayerIndex + 1) % players.Num();
+	return players[currentPlayerIndex];
 }
 
