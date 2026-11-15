@@ -20,6 +20,7 @@ void AGameManager::BeginPlay()
 		players[i]->boardTiles = board;
 	}
 	currentPlayerIndex = 0;
+	turnCount = 1;
 	
 }
 
@@ -32,6 +33,9 @@ void AGameManager::Tick(float DeltaTime)
 
 APlayerPiece* AGameManager::AdvanceTurn() {
 	currentPlayerIndex = (currentPlayerIndex + 1) % players.Num();
+	if (currentPlayerIndex == 0) {
+		turnCount += 1;
+	}
 	return players[currentPlayerIndex];
 }
 

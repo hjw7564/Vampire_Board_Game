@@ -50,7 +50,7 @@ void APlayerPiece::Tick(float DeltaTime)
 				targetTile = Cast<ABoardTile>(boardTiles[playerTileIndex]);
 				if (targetTile != nullptr && targetIndex==playerTileIndex) {
 					AddCoin(targetTile->tileCoin);
-					UE_LOG(LogTemp, Warning, TEXT("Coins: %i"), coins);
+					UE_LOG(LogTemp, Warning, TEXT("Coins: %f"), coins);
 				}
 			}
 	}

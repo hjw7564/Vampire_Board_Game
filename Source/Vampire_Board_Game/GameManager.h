@@ -26,7 +26,7 @@ public:
 	UPROPERTY(EditInstanceOnly)
 		TArray<AActor*> board;
 
-	UPROPERTY(EditInstanceOnly)
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 		TArray<APlayerPiece*> players;
 
 protected:
